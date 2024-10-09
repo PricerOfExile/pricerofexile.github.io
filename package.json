@@ -1,0 +1,13 @@
+{
+  "name": "pricerofexile.github.io",
+  "version": "1.0.0",
+  "scripts": {
+    "serve": "docsify serve docs"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "docsify-cli": "^4.4.4"
+  }
+}
