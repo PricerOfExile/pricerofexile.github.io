@@ -1,0 +1,11 @@
+- Quick dive
+  - [Intro](QuickDive/intro.md)
+  - [Scope](QuickDive/scope.md)
+  - [Next steps](QuickDive/next_steps.md)
+- Components
+  - [Project architecture](Components/project_architecture.md)
+  - [Data aggregation and parsing](Components/data_aggregation_and_parsing.md)
+  - [Interface](Components/interface.md)
+  - [Model](Components/model.md)
+- Extras
+
