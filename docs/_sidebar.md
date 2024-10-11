@@ -6,6 +6,10 @@
   - [Project architecture](Components/project_architecture.md)
   - [Data aggregation and parsing](Components/data_aggregation_and_parsing.md)
   - [Interface](Components/interface.md)
-  - [Model](Components/model.md)
+  - [Model](Components/Model/model.md)
+    - [Base principles](Components/Model/base_principles.md)
+    - [First Draft](Components/Model/first_draft_exploration.md)
+    - [Second Draft](Components/Model/second_draft_naive_modeling.md)
+    - [Third Draft](Components/Model/third_draft_final_format.md)
 - Extras
 
