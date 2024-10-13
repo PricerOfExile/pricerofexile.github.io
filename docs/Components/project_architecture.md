@@ -3,7 +3,7 @@ Project Architecture
 
 Pricer of exile project consists of two different flows the first one is dedicated to training the AI model and the second one in charge of the "live" flow. We decided to create multiple different components in different technologies to support this flows.
 
-![Price of Exile Architecture](/assets/architecture/pricer-of-exile.jpg)
+![Price of Exile Architecture](/../assets/architecture/pricer-of-exile.jpg)
 
 Training Flow
 -------------
