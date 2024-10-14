@@ -12,4 +12,5 @@
     - [Second Draft](Components/Model/second_draft_naive_modeling.md)
     - [Third Draft](Components/Model/third_draft_final_format.md)
 - Extras
+  - [Lessons learned](Extras/lessons_learned.md)
 
