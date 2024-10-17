@@ -3,15 +3,48 @@ Data Aggregation And Parsing
 
 !> complete me
 
+Path of Exile's Items and Statistics
+------------------------------------
+
+There is a lot of different type of [items](https://www.poewiki.net/wiki/Item) in Path of Exile. Items of some types are derived from a basic model with a few small variations (ie. unique objects) whereas in other types the number of possible combinations is extremely large, so it is very rare to have the same object several times and this also implies that players need some amount to knowledge to compare items and their values.
+
+![Item](../assets/ingame/not-priced-item.png)
+
+An item is composed of multiple "simple" properties like `required level`, `rarity` or `item level` but also some specific properties called [modifiers(mods)](https://www.poewiki.net/wiki/Modifier). In the screenshot above you can see the textual represent representation of `mods` ie. `+23 TO STRENGTH`. 
+
+These `mods` impact, in the game engine, other properties called [stats](https://www.poewiki.net/wiki/Stat), ie. `+23 TO STRENGTH` will increase the stat `additional_strength` by 23 points. 
+
+But a `could` also impact multiple `stats` ie. `+13% TO FIRE AND COLD RESISTANCES` will increase stats `base_cold_damage_resistance_%` and `base_fire_damage_resistance_%`.
+
+The simple properties and `stats` impacted by the `mods` are what we choose to use to represent and item inside our model.
+
+Note that you can retrieve the textual representation of an object by simply `Ctrl+C` In-Game.
+
+```
+Item Class: Amulets
+Rarity: Rare
+Dread Medallion
+Agate Amulet
+--------
+Requirements:
+Level: 56
+--------
+Item Level: 72
+--------
++23 to Strength and Intelligence (implicit)
+--------
+20% increased Cold Damage
+29% increased Armour
++5% to all Elemental Resistances
++11% to Lightning Resistance
+```
+
 Path of Exile's Trading System
 ------------------------------
 
 ### Listing an Item
 
 In order to trade items with other, a player can list its items using a in-game feature called `public stash tab`. Each player has on it's account a stash/chest which can be used to store items, a stash is composed of multiple tabs. Some of them could be marked as public and as soon it's the case the tab's content will be listed on the market. To put a price on an item the player will have to right-click on an object and put a note on it asking for anything he wants in exchange for the given item.
-
-![Not Priced Item](../assets/ingame/not-priced-item.png)
-*Not priced item in public stash tab*
 
 ![Give Price To Item](../assets/ingame/give-price-to-item.png)
 *Give a price to an item*
@@ -47,6 +80,18 @@ Here is an extract of answer for one call to this API :
                             "name": "Damnation Snare",
                             "baseType": "Stygian Vise",
                             // other properties
+                            "note": "~price 4 divine",
+                            "implicitMods": [
+                              "+20% to Chaos Resistance"
+                            ],
+                            "explicitMods": [
+                              "+53 to Strength",
+                              "+52 to Dexterity",
+                              "Adds 6 to 14 Physical Damage to Attacks",
+                              "Adds 1 to 14 Lightning Damage to Attacks",
+                              "+70 to maximum Mana",
+                              "16% increased Mana Regeneration Rate"
+                            ]
                         }
                     ]
                 }
@@ -72,4 +117,12 @@ This pretty simple project is build with [Node.js](https://nodejs.org/en) and [E
 parser-of-exile
 ----------------
 
-> Responsibilities : List all possible statistics on an item, translate one textual description into one or multiple statistics, convert all prices into a common currency. 
+> Responsibilities : List all possible stats for a given item types, translate one textual description into one or multiple statistics, convert all prices into a common currency.
+
+This module is written in Java/Spring and is split in 3 modules :
+
+- parser-of-exile-core: based on Path of Exile game engine configuration files (extracted using  [pathofexile-dat](https://github.com/SnosMe/poe-dat-viewer/blob/master/lib/README.md)) it provides features around items/stats and mods.
+- parser-of-exile-command-line: read, filter and transform items extracted from Public Stashed API in order to give them to model-trainer later
+- parser-of-exile-api: expose a `predict` API where it can receive a textual representation of an object
+
+
