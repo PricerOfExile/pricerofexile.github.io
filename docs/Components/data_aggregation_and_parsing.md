@@ -117,12 +117,24 @@ This pretty simple project is build with [Node.js](https://nodejs.org/en) and [E
 parser-of-exile
 ----------------
 
-> Responsibilities : List all possible stats for a given item types, translate one textual description into one or multiple statistics, convert all prices into a common currency.
+> Responsibilities : Transform Public Stashes files into Model Items in order to train the model and expose an API receiving an InGame description of an item and call the model to predict its rank. 
 
 This module is written in Java/Spring and is split in 3 modules :
 
-- parser-of-exile-core: based on Path of Exile game engine configuration files (extracted using  [pathofexile-dat](https://github.com/SnosMe/poe-dat-viewer/blob/master/lib/README.md)) it provides features around items/stats and mods.
-- parser-of-exile-command-line: read, filter and transform items extracted from Public Stashed API in order to give them to model-trainer later
-- parser-of-exile-api: expose a `predict` API where it can receive a textual representation of an object
+### parser-of-exile-core 
+
+Based on Path of Exile game engine configuration files (extracted using  [pathofexile-dat](https://github.com/SnosMe/poe-dat-viewer/blob/master/lib/README.md)) and data extracted from other third party tool [poe.ninja](poe.ninja) it provides features around items/stats, mods and currencies like :
+
+- Listing all possible stats for a given item types
+- Translating textual description into one or multiple `stats`
+- Convert all prices into a common currency.
+
+### parser-of-exile-command-line
+
+It reads, filters and transforms items extracted from Public Stashed API in order to give them to model-trainer later.
+
+### parser-of-exile-api
+
+Exposes a `predict` API where it can receive a textual representation of an object.
 
 
